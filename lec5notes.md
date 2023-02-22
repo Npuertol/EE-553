@@ -1,0 +1,144 @@
+# Week 5 Lecture -
+## Classes and Objects
+## Last Week's Material
+- Class variables are called members
+- Members can be private / public
+--Private members - cannot access them as users
+--Public methods - used to access private members
+--give control of private members by using public control methods within class such as chapter 13 example
+-- 
+
+## This week's material
+### Operator overloading
+- 2 types:
+-- Operator overloading - function overwrite of operators
+--- how can u add objects together?
+---- addition operation used for simple data types, but objects consist of different data types
+---- compiler doesnt know how to do this
+---- operator overloading - modification to these operators "+, -, <<, >>, [], etc."
+---- telling C++, dont use classic implementation, use your OWN custom implementation (function)
+--- how to define these operator overloading functions?
+---- need to write keyword **operator** first followed by the **operator u want to overload**
+--- do you need to write operator overloading inside the class?
+---- ideally yes, but in some cases you might not be able to do this, such as with ">> and <<" (i/o stream operators)
+---- you can declare these >> and << in the class, but you cannot define them in the class
+---- because these operators are used with input/output stream, which ARE NOT MEMBERS of your class
+---- need to write the prototye of these in the class, THEN do the implementation outside of the class
+---- use "::" **scope operator** to tie function implementation to the specific class
+---- MAKE SURE function implementation can access EVERYTHING in class, by
+----- adding **friend** before function prototype - 
+----- friend means that the function implementation is going to be OUTSIDE the class, and this definition is FRIEND to class
+----- friend means the function can access any data members as if inside the class
+-- Function overloading - 
+
+### this Pointer
+- we can define a pointer that points to OBJECT of class
+- <this> pointer is *pre-defined* pointer
+- already defined by compiler, already used without developer defining it
+- whenever call a class function, function has to be called through an object/pointer
+- can use it right away to access any data member / function of class
+
+```
+cout << student1.getStudentName() << endl;
+```
+- getStudentName is a member function of Student class
+- cannot call function immediately
+- either through object or through pointer
+- if object: have to define object of class like above (student1) and use dot operator
+-- drawn our this points to object called student1, and student1 has many things including getStudentName()
+- rule of thumb: <this> pointer is ALWAYS pointing to object being used to call member function
+
+### Invoking an Overloaded Operator
+- We can use operator "=" and overload it 
+- Then use it to assign members of objects to anothehr
+```
+object1 = object2; // className operator= (&obj1 + &obj2){} ??? i think
+```
+
+
+### Returning a Value
+
+```
+class Point2d
+{
+private:
+	int x, y;
+
+...
+
+public:
+	double operator- (const point2d &right)
+{
+	return sqrt(pow((x-right.x), 2) + pow ((y-right.y), 2));)
+}
+};
+
+Point2d point1(2,2) , point2(4,4);
+// Compute and display distance between 2 points
+cout << point2 - point 1 << endl; // displays 2.82843
+```
+- call by reference used here (&) in order to access it directly instead of using copy (pass by value)
+- const keyword used in parameter to make sure we do not change the original object
+- point1 will be seen as parameter &right in compiler
+- compiler will see you are trying to find difference between **objects** point1 - point2
+- therefore will do this:L
+-- checks to see if class has implementation of operator- overloading?
+-- yes we do!
+-- compiler will call function, jump to function definition
+-- compiler will take what is on the **right** of it as input parameter to operator-
+-- point2 in code is used as **calling object** - 
+-- given it is used as calling object, we can access them directly!
+--- this->x = x
+--- this->y = y
+-- point1 is called and referenced through &right, which means we have to access it through the <&right> reference
+
+
+### Notes on Overloaded Operators
+- ?; , . , .* , ::, sizeof
+- these u cannot overload
+
+
+
+### Fraction code notes
+- class constructor types  + usages
+```
+class Fraction
+	
+private:
+	int num;
+	int den;	
+public:	
+	
+
+	Fraction(int n, int d) : num(n), den(d) // initializer list
+	Fraction(int n) {			// assignment + default member value (see parameters + den assignment)
+		num = n;
+		den = 1;
+	Fraction() : num(0), den(1)		// initializer list, empty parameter call = default member values
+}
+
+int main() 
+{
+	Fraction a(1,2);	// 1/2
+	Fraction b(3); 		// 3/1
+	Fraction c; 		// calls Fraction::Fraction()
+	Fraction d();		// dont put parentheses, which will not call constructor
+}
+```
+- a calls constructor 1, b calls constructor 2, c calls constructor 3
+- if you are calling constructor without parameters, don't put parentheses, ambiguity with compiler which does 
+
+
+#### << operator overloading
+
+- use keyword friend in function declaration - implementation is happening outside of class, but we will access class members
+- we will declare function don't mention friend
+- two arguments - 
+-- ostream& (s) - this means we use s instead of cout
+-- what you wold like to print (const object Fraction& f, pass by reference)
+-- only works operation overloading , s as cout, when condition is using class object Fraction
+
+
+Watch lecture after 1:33:30 (after class activity explanation)
+
+
