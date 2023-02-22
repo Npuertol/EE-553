@@ -11,24 +11,24 @@
 ## This week's material
 ### Operator overloading
 - 2 types:
--- Operator overloading - function overwrite of operators
---- how can u add objects together?
----- addition operation used for simple data types, but objects consist of different data types
----- compiler doesnt know how to do this
----- operator overloading - modification to these operators "+, -, <<, >>, [], etc."
----- telling C++, dont use classic implementation, use your OWN custom implementation (function)
---- how to define these operator overloading functions?
----- need to write keyword **operator** first followed by the **operator u want to overload**
---- do you need to write operator overloading inside the class?
----- ideally yes, but in some cases you might not be able to do this, such as with ">> and <<" (i/o stream operators)
----- you can declare these >> and << in the class, but you cannot define them in the class
----- because these operators are used with input/output stream, which ARE NOT MEMBERS of your class
----- need to write the prototye of these in the class, THEN do the implementation outside of the class
----- use "::" **scope operator** to tie function implementation to the specific class
----- MAKE SURE function implementation can access EVERYTHING in class, by
------ adding **friend** before function prototype - 
------ friend means that the function implementation is going to be OUTSIDE the class, and this definition is FRIEND to class
------ friend means the function can access any data members as if inside the class
+	- Operator overloading - function overwrite of operators
+			- how can u add objects together?
+				- addition operation used for simple data types, but objects consist of different data types
+				- compiler doesnt know how to do this
+				- operator overloading - modification to these operators "+, -, <<, >>, [], etc."
+				- telling C++, dont use classic implementation, use your OWN custom implementation (function)
+			- how to define these operator overloading functions?
+				- need to write keyword **operator** first followed by the **operator u want to overload**
+			- do you need to write operator overloading inside the class?
+				- ideally yes, but in some cases you might not be able to do this, such as with ">> and <<" (i/o stream operators)
+				- you can declare these >> and << in the class, but you cannot define them in the class
+				- because these operators are used with input/output stream, which ARE NOT MEMBERS of your class
+				- need to write the prototye of these in the class, THEN do the implementation outside of the class
+				- use "::" **scope operator** to tie function implementation to the specific class
+				- MAKE SURE function implementation can access EVERYTHING in class, by
+					- adding **friend** before function prototype - 
+					- friend means that the function implementation is going to be OUTSIDE the class, and this definition is FRIEND to class
+					- friend means the function can access any data members as if inside the class
 -- Function overloading - 
 
 ### this Pointer
@@ -82,15 +82,15 @@ cout << point2 - point 1 << endl; // displays 2.82843
 - point1 will be seen as parameter &right in compiler
 - compiler will see you are trying to find difference between **objects** point1 - point2
 - therefore will do this:L
--- checks to see if class has implementation of operator- overloading?
--- yes we do!
--- compiler will call function, jump to function definition
--- compiler will take what is on the **right** of it as input parameter to operator-
--- point2 in code is used as **calling object** - 
--- given it is used as calling object, we can access them directly!
---- this->x = x
---- this->y = y
--- point1 is called and referenced through &right, which means we have to access it through the <&right> reference
+	- checks to see if class has implementation of operator- overloading?
+	- yes we do!
+	- compiler will call function, jump to function definition
+	- compiler will take what is on the **right** of it as input parameter to operator-
+	- point2 in code is used as **calling object** - 
+	- given it is used as calling object, we can access them directly!
+		- this->x = x
+		- this->y = y
+	- point1 is called and referenced through &right, which means we have to access it through the <&right> reference
 
 
 ### Notes on Overloaded Operators
@@ -134,9 +134,9 @@ int main()
 - use keyword friend in function declaration - implementation is happening outside of class, but we will access class members
 - we will declare function don't mention friend
 - two arguments - 
--- ostream& (s) - this means we use s instead of cout
--- what you wold like to print (const object Fraction& f, pass by reference)
--- only works operation overloading , s as cout, when condition is using class object Fraction
+	- ostream& (s) - this means we use s instead of cout
+	- what you wold like to print (const object Fraction& f, pass by reference)
+	- only works operation overloading , s as cout, when condition is using class object Fraction
 
 
 Watch lecture after 1:33:30 (after class activity explanation)
