@@ -12,13 +12,13 @@
 ### Operator overloading
 - 2 types:
 	- Operator overloading - function overwrite of operators
-			- how can u add objects together?
-				- addition operation used for simple data types, but objects consist of different data types
-				- compiler doesnt know how to do this
-				- operator overloading - modification to these operators "+, -, <<, >>, [], etc."
-				- telling C++, dont use classic implementation, use your OWN custom implementation (function)
-			- how to define these operator overloading functions?
-				- need to write keyword **operator** first followed by the **operator u want to overload**
+		- how can u add objects together?
+		- addition operation used for simple data types, but objects consist of different data types
+		- compiler doesnt know how to do this
+		- operator overloading - modification to these operators "+, -, <<, >>, [], etc."
+		- telling C++, dont use classic implementation, use your OWN custom implementation (function)
+		- how to define these operator overloading functions?
+			- need to write keyword **operator** first followed by the **operator u want to overload**
 			- do you need to write operator overloading inside the class?
 				- ideally yes, but in some cases you might not be able to do this, such as with ">> and <<" (i/o stream operators)
 				- you can declare these >> and << in the class, but you cannot define them in the class
